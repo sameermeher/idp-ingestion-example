@@ -1,0 +1,33 @@
+name: Simple GitHub Action
+
+# Trigger the workflow on specific events
+on:
+  push:
+    branches:
+      - main  # Trigger when changes are pushed to the 'main' branch
+  pull_request:  # Trigger on pull request events
+
+# Define the jobs for the workflow
+jobs:
+  build:
+    runs-on: ubuntu-latest  # The OS to run the job on
+
+    steps:
+      # Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Run a sample shell command
+      - name: Say Hello
+        run: echo "Hello, World!"
+
+      # Example of using a Node.js action
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Run a JavaScript script
+        run: |
+          echo "console.log('Hello from Node.js!')" > script.js
+          node script.js
